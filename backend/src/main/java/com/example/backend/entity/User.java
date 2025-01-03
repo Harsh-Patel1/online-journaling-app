@@ -3,6 +3,8 @@ package com.example.backend.entity; // This means the class belongs to the com.e
 // imports everything (*) from the jakarta.persistence package, 
 // which contains important JPA (Java Persistence API) annotations like @Entity, @Table, and @Id
 import jakarta.persistence.*; 
+import jakarta.validation.constraints.Email; // For validating email format
+import jakarta.validation.constraints.Size; // For validating password length
 
 // The @Entity annotation tells Hibernate (or any ORM tool) that the class is a database entity.
 // Hibernate automatically maps the class to a corresponding table in the database.
@@ -23,11 +25,9 @@ public class User {
     // nullable = false: Makes the column mandatory (it cannot be null).
     private String username;
 
-    @Column(nullable = false)
-    @Size(min = 6, max = 25, message = "Password must be at least 6 characters long")
-    // This column stores the user's hashed password.
-    // It is mandatory (nullable = false).
-    private String password;
+//    @Size(min = 6, max = 25, message = "Password must be at least 6 characters long and no more than 25 characters")
+   @Column(nullable = false)
+   private String password;
 
     @Column(nullable = false)
     @Email(message = "Email should be valid")
